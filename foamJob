@@ -1,0 +1,17 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+
+runApplication foamJob -s -parallel simpleFoam
+
+runApplication reconstructPar
+
+runApplication foamLog log
+
+chmod +x plot
+
+./plot
+
+
+#------------------------------------------------------------------------------
